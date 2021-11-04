@@ -27,8 +27,9 @@ Enabled enpoints
 # POST
 ../createpost
 
-# Swagger UI
+# API docs
 ../docs
+../redoc
 ```
 
 ## Contributing
