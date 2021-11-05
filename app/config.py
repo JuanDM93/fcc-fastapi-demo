@@ -1,5 +1,4 @@
-from os import getenv
-from pydantic import BaseModel, BaseSettings
+from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):

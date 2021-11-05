@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 ### Run server locally
 
-Create .env file with the variables as described in the [example](.env_example) file.
+Configure database and create .env file with the variables as described in the [example](.env_example) file.
 
 Run service:
 
