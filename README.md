@@ -4,7 +4,7 @@ freeCodeCamp FastAPI [demo](https://youtu.be/0sOvCWFmrtA)
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install requirements.
+Install requirements.
 
 ```bash
 pip install -r requirements.txt
@@ -12,30 +12,38 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run server locally
+### Run server locally
+
+Create .env file with the variables as described in the [example](.env_example) file.
+
+Run service:
 
 ```bash
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
-Enabled enpoints
+## Enabled enpoints
+
+CRUD
 
 ```bash
-# GET
 ../posts
+../posts/{id}
+```
 
-# POST
-../createpost
+API docs
 
-# API docs
+```bash
 ../docs
 ../redoc
 ```
 
 ## Contributing
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)
