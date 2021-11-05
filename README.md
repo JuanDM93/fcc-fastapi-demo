@@ -27,6 +27,9 @@ CRUD
 ```bash
 ../posts
 ../posts/{id}
+
+../users
+../users/{id}
 ```
 
 API docs
