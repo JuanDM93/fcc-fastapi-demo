@@ -2,7 +2,9 @@
 
 freeCodeCamp FastAPI [demo](https://youtu.be/0sOvCWFmrtA)
 
-## Installation
+## Usage
+
+### Run server locally
 
 Install requirements.
 
@@ -10,11 +12,7 @@ Install requirements.
 pip install -r requirements.txt
 ```
 
-## Usage
-
-### Run server locally
-
-Configure database and create .env file with the variables as described in the [example](.env_example) file.
+Configure local database and create .env file with the variables as described in the [example](.env_example) file.
 
 Run service:
 

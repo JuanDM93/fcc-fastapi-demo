@@ -3,6 +3,7 @@ from sqlalchemy.orm.session import Session
 from fastapi import FastAPI, Response, status, HTTPException, Depends
 
 from .db import engine, get_db
+from .utils import pwd_context
 from . import models, schemas
 
 
@@ -87,3 +88,25 @@ def update_post(id: int, updated_post: schemas.PostCreate, db: Session = Depends
     post_query.update(updated_post.dict(), synchronize_session=False)
     db.commit()
     return post_query.first()
+
+
+@app.post("/users", status_code=status.HTTP_201_CREATED, response_model=schemas.UserOut)
+def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+    hash_pwd = pwd_context.hash(user.password)
+    user.password = hash_pwd
+    new_user = models.User(**user.dict())
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return new_user
+
+
+@app.get("/users/{id}", response_model=schemas.UserOut)
+def get_user(id: int, db: Session = Depends(get_db)):
+    user = db.query(models.User).get(id)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"User with id: {id} not found"
+        )
+    return user
