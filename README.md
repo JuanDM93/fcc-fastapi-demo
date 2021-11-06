@@ -25,11 +25,13 @@ uvicorn app.main:app --reload
 CRUD
 
 ```bash
-../posts
-../posts/{id}
+../login
 
 ../users
 ../users/{id}
+
+../posts
+../posts/{id}
 ```
 
 API docs

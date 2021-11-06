@@ -1,9 +1,10 @@
 from typing import List
+from fastapi.security import oauth2
 from sqlalchemy.orm.session import Session
-from fastapi import status, HTTPException, Response, APIRouter, Depends
+from fastapi import Depends, status, HTTPException, Response, APIRouter
 
 from ..db import get_db
-from .. import models, schemas
+from .. import models, schemas, oauth2
 
 
 router = APIRouter(
@@ -13,7 +14,7 @@ router = APIRouter(
 
 
 @router.get("/", response_model=List[schemas.Post])
-def get_posts(db: Session = Depends(get_db)):
+def get_posts(db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     # cur.execute("SELECT * FROM posts")
     # posts = cur.fetchall()
     posts = db.query(models.Post).all()
@@ -21,7 +22,7 @@ def get_posts(db: Session = Depends(get_db)):
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.Post)
-def create_post(post: schemas.PostCreate, db: Session = Depends(get_db)):
+def create_post(post: schemas.PostCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     # cur.execute(
     #     "INSERT INTO posts (title, content, published) VALUES (%s, %s, %s) RETURNING *",
     #     (post.title, post.content, post.published,)
@@ -36,7 +37,7 @@ def create_post(post: schemas.PostCreate, db: Session = Depends(get_db)):
 
 
 @router.get("/{id}", response_model=schemas.Post)
-def get_post(id: int, db: Session = Depends(get_db)):
+def get_post(id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     # cur.execute(
     #     "SELECT * FROM posts WHERE id = %s",
     #     (id,)
@@ -52,7 +53,7 @@ def get_post(id: int, db: Session = Depends(get_db)):
 
 
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_post(id: int, db: Session = Depends(get_db)):
+def delete_post(id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     # cur.execute(
     #     "DELETE FROM posts WHERE id = %s RETURNING *",
     #     (id,)
@@ -71,7 +72,7 @@ def delete_post(id: int, db: Session = Depends(get_db)):
 
 
 @router.put("/{id}", status_code=status.HTTP_200_OK, response_model=schemas.Post)
-def update_post(id: int, updated_post: schemas.PostCreate, db: Session = Depends(get_db)):
+def update_post(id: int, updated_post: schemas.PostCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     # cur.execute(
     #     "UPDATE posts SET title = %s, content = %s, published = %s WHERE id = %s RETURNING *",
     #     (post.title, post.content, post.published, id)
