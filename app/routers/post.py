@@ -45,7 +45,11 @@ def get_post(id: int, db: Session = Depends(get_db), current_user=Depends(oauth2
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.Post)
-def create_post(post: schemas.PostCreate, db: Session = Depends(get_db), current_user=Depends(oauth2.get_current_user)):
+def create_post(
+    post: schemas.PostCreate,
+    db: Session = Depends(get_db),
+    current_user=Depends(oauth2.get_current_user)
+):
     # cur.execute(
     #     "INSERT INTO posts (title, content, published) VALUES (%s, %s, %s) RETURNING *",
     #     (post.title, post.content, post.published,)
@@ -85,7 +89,12 @@ def delete_post(id: int, db: Session = Depends(get_db), current_user=Depends(oau
 
 
 @router.put("/{id}", status_code=status.HTTP_200_OK, response_model=schemas.Post)
-def update_post(id: int, updated_post: schemas.PostCreate, db: Session = Depends(get_db), current_user=Depends(oauth2.get_current_user)):
+def update_post(
+    id: int,
+    updated_post: schemas.PostCreate,
+    db: Session = Depends(get_db),
+    current_user=Depends(oauth2.get_current_user)
+):
     # cur.execute(
     #     "UPDATE posts SET title = %s, content = %s, published = %s WHERE id = %s RETURNING *",
     #     (post.title, post.content, post.published, id)

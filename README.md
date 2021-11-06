@@ -32,6 +32,8 @@ CRUD
 
 ../posts
 ../posts/{id}
+
+../vote
 ```
 
 API docs
