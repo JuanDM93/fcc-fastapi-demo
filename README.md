@@ -14,10 +14,16 @@ pip install -r requirements.txt
 
 Configure local database and create .env file with the variables as described in the [example](.env_example) file.
 
+Start  db with head revision [alembic](https://alembic.sqlalchemy.org/en/latest/)]:
+
+```bash
+alembic upgrade head
+```
+
 Run service:
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn app.main:app
 ```
 
 ## Enabled enpoints
