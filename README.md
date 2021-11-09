@@ -30,6 +30,20 @@ uvicorn app.main:app
 
 Gunicorn [service file](gunicorn.service)), don't forget to setup db from alembic and .env file.
 
+### Dockerize
+
+Once cloned, run [docker-compose](https://docs.docker.com/compose/overview/) to build and run the service
+
+"""bash
+docker-compose -f docker-compose-{env}.yml up
+"""
+
+env:
+
+- dev: local .env file required
+
+- prod: [DockerHub](https://hub.docker.com/r/juandm93/ffc-fastapi)
+
 ## Enabled enpoints
 
 CRUD
