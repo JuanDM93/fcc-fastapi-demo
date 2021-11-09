@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 Configure local database and create .env file with the variables as described in the [example](.env_example) file.
 
-Start  db with head revision [alembic](https://alembic.sqlalchemy.org/en/latest/):
+Init db with head revision [alembic](https://alembic.sqlalchemy.org/en/latest/):
 
 ```bash
 alembic upgrade head
@@ -32,7 +32,7 @@ Gunicorn [service file](gunicorn.service)), don't forget to setup db from alembi
 
 ### Dockerize
 
-Once cloned, run [docker-compose](https://docs.docker.com/compose/overview/) to build and run the service
+Once cloned, run [docker-compose](https://docs.docker.com/compose/overview/) to build and run the service. Use alembic to init db if needed.
 
 """bash
 docker-compose -f docker-compose-{env}.yml up
