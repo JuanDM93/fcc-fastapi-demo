@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 Configure local database and create .env file with the variables as described in the [example](.env_example) file.
 
-Start  db with head revision [alembic](https://alembic.sqlalchemy.org/en/latest/)]:
+Start  db with head revision [alembic](https://alembic.sqlalchemy.org/en/latest/):
 
 ```bash
 alembic upgrade head
@@ -25,6 +25,10 @@ Run service:
 ```bash
 uvicorn app.main:app
 ```
+
+### Run from web server
+
+Gunicorn [service file](gunicorn.service)), don't forget to setup db from alembic and .env file.
 
 ## Enabled enpoints
 
