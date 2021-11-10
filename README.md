@@ -20,6 +20,12 @@ Init db with head revision [alembic](https://alembic.sqlalchemy.org/en/latest/):
 alembic upgrade head
 ```
 
+Pytest enabled:
+
+```bash
+pytest
+```
+
 Run service:
 
 ```bash
@@ -28,20 +34,19 @@ uvicorn app.main:app
 
 ### Run from web server
 
-Gunicorn [service file](gunicorn.service)), don't forget to setup db from alembic and .env file.
+Gunicorn [service file](gunicorn.service), don't forget to setup db from alembic and .env file.
 
 ### Dockerize
 
 Once cloned, run [docker-compose](https://docs.docker.com/compose/overview/) to build and run the service. Use alembic to init db if needed.
 
-"""bash
+```bash
 docker-compose -f docker-compose-{env}.yml up
-"""
+```
 
 env:
 
 - dev: local .env file required
-
 - prod: [DockerHub](https://hub.docker.com/r/juandm93/ffc-fastapi)
 
 ## Enabled enpoints
